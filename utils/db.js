@@ -21,12 +21,12 @@ class DBClient {
   }
 
   async nbUsers() { 
-    this.users = this.db.collection('users'); // const users = ...
-    return this.users.countDocuments();
+    const users = this.db.collection('users');
+    return users.countDocuments();
   }
 
   async nbFiles() {
-    this.files = this.db.collection('files'); // const files = ...
+    const files = this.db.collection('files');
     return this.files.countDocuments();
   }
 }
