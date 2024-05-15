@@ -1,13 +1,13 @@
-import { MongoClient } from 'mongodb';
+const  MongoClient = require('mongodb').MongoClient;
 
 const HOST = process.env.DB_HOST || 'localhost';
 const PORT = process.env.DB_PORT || 27017;
 const DATABASE = process.env.DB_DATABASE || 'files_manager';
-const URL = `mongodb://${HOST}:${PORT}`; // url
+const url = `mongodb://${HOST}:${PORT}`;
 
 class DBClient {
   constructor() {
-    MongoClient.connect(URL, { useUnifiedTopology: true }, (err, client) => {
+    MongoClient.connect(url, { useUnifiedTopology: true }, (err, client) => {
       if (!err) {
         this.db = this.client.db(DATABASE);
       } else {
@@ -27,7 +27,7 @@ class DBClient {
 
   async nbFiles() {
     const files = this.db.collection('files');
-    return this.files.countDocuments();
+    return files.countDocuments();
   }
 }
 
